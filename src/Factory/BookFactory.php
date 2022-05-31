@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Book;
+use App\Factory\LangueFactory;
 use App\Repository\BookRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
@@ -32,25 +33,22 @@ final class BookFactory extends ModelFactory
     {
         parent::__construct();
 
-        // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
     }
 
     protected function getDefaults(): array
     {
         return [
-            // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'cote' => self::faker()->word(),
             'delicate' => self::faker()->boolean(),
             'title' => self::faker()->words(5, true),
             'numberPage' => self::faker()->randomNumber(3),
+            'langue' => LangueFactory::random(),
         ];
     }
 
     protected function initialize(): self
     {
-        // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
         return $this
-            // ->afterInstantiate(function(Book $book): void {})
         ;
     }
 

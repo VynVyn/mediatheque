@@ -15,8 +15,9 @@ class Book extends Document
     #[ORM\Column(type: 'integer')]
     private int $numberPage;
 
-    #[ORM\Column(type: 'string', length: 25, nullable: true)]
-    private string $langue;
+    #[ORM\ManyToOne(targetEntity: Langue::class, inversedBy: 'books')]
+    private Langue $langue;
+
 
     public function getTitle(): ?string
     {
@@ -42,15 +43,16 @@ class Book extends Document
         return $this;
     }
 
-    public function getLangue(): ?string
+    public function getLangue(): ?Langue
     {
         return $this->langue;
     }
 
-    public function setLangue(?string $langue): self
+    public function setLangue(?Langue $langue): self
     {
         $this->langue = $langue;
 
         return $this;
     }
+
 }
