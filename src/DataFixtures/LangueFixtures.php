@@ -2,15 +2,15 @@
 
 namespace App\DataFixtures;
 
-use App\Factory\BookFactory;
+use App\Factory\LangueFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class BookFixtures extends Fixture
+class LangueFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        BookFactory::createMany(30);
+        LangueFactory::createMany(40);
     }
 
 }
