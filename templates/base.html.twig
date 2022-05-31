@@ -35,8 +35,9 @@
                         <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Rechercher</button>
                     </form>
+                    <a href="{{ path('app_logout') }}" class="btn btn-outline-danger ms-2" type="submit">Déconnexion</a>
                 {% else %}
-                    <a href="#" class="btn btn-outline-primary me-2" type="submit">Inscription</a>
+                    <a href="{{ path('app_register') }}" class="btn btn-outline-primary me-2" type="submit">Inscription</a>
                     <a href="{{ path('app_login') }}" class="btn btn-outline-success" type="submit">Connexion</a>
                 {% endif %}
                 </div>
