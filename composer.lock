@@ -5,10 +5,14 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "content-hash": "657170a7163f78287ec666eeeee96481",
 =======
     "content-hash": "313e0234aaa2787d5032870902ac4e37",
 >>>>>>> pauline
+=======
+    "content-hash": "657170a7163f78287ec666eeeee96481",
+>>>>>>> vincent
     "packages": [
         {
             "name": "doctrine/annotations",
