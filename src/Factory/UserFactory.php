@@ -61,8 +61,8 @@ final class UserFactory extends ModelFactory
             'email' => self::faker()->email(),
             'roles' => self::faker()->shuffleArray(['ROLE_USER']),
             'password' => self::faker()->password(),
-            'firstName' => self::faker()->name(),
-            'lastName' => self::faker()->name(),
+            'firstName' => self::faker()->firstName(),
+            'lastName' => self::faker()->lastName(),
             'registrationDate' => self::faker()->dateTime(), // TODO add DATETIME ORM type manually
             'birthday' => self::faker()->dateTime(), // TODO add DATETIME ORM type manually
         ];

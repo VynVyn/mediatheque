@@ -39,8 +39,8 @@ final class ArtistFactory extends ModelFactory
     {
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'firstName' => self::faker()->name(),
-            'lasteName' => self::faker()->name(),
+            'firstName' => self::faker()->firstName(),
+            'lasteName' => self::faker()->lastName(),
             'birthday' => self::faker()->dateTime(), // TODO add DATETIME ORM type manually
         ];
     }

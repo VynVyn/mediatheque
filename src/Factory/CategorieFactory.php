@@ -39,7 +39,7 @@ final class CategorieFactory extends ModelFactory
     {
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'name' => self::faker()->name(),
+            'name' => self::faker()->firstNameFemale(),
         ];
     }
 
