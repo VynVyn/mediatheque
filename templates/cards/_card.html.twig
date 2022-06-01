@@ -2,9 +2,7 @@
     <div class="card-body bg-light">
         <p class="card-text">cote : {{ document.cote }}</p>
         <class class="row">
-            {% if get_class(document) == 'Book' %}
-                {% include 'cards/_book.html.twig' with {document: document} only %}
-            {% endif %}
+            {% include 'cards/_'~(get_class(document)|lower)~'.html.twig' with {document: document} only %}
         </class>
     </div>
 </div>
