@@ -9,12 +9,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: FilmRepository::class)]
-class Film
+class Film extends Document
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private int $id;
+
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $title;
@@ -31,11 +28,6 @@ class Film
     public function __construct()
     {
         $this->langues = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getTitle(): ?string

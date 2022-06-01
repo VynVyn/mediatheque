@@ -38,7 +38,8 @@ final class FilmFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
+            'cote' => self::faker()->word(),
+            'delicate' => self::faker()->boolean(),
             'title' => self::faker()->text(10),
             'time' => self::faker()->datetime(), 
             'releaseDate' => self::faker()->dateTime('now -6month'),
@@ -48,9 +49,7 @@ final class FilmFactory extends ModelFactory
 
     protected function initialize(): self
     {
-        // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
         return $this
-            // ->afterInstantiate(function(Film $film): void {})
         ;
     }
 
