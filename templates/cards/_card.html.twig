@@ -1,9 +1,9 @@
 <div class="card m-3">
     <div class="card-body bg-light">
-        <p class="card-text">cote : {{ document.cote }} {{get_class(document)}}</p>
+        <p class="card-text">cote : {{ document.cote }}</p>
         <class class="row">
-            {% if get_class(document) == 'App\Entity\Book' %}
-                {% include 'cards/_book.html.twig' with {book: book} only %}
+            {% if get_class(document) == 'Book' %}
+                {% include 'cards/_book.html.twig' with {document: document} only %}
             {% endif %}
         </class>
     </div>

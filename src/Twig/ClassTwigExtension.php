@@ -21,12 +21,17 @@ class ClassTwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('get_class', 'get_class'),
+            new TwigFunction('get_class', [$this, 'getClass']),
         ];
     }
 
     public function getName()
     {
         return 'class_twig_extension';
+    }
+
+    public function getClass($object)
+    {
+        return (new \ReflectionClass($object))->getShortName();
     }
 }
