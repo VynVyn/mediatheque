@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\InheritanceType;
 #[ORM\Entity(repositoryClass: DocumentRepository::class)]
 #[InheritanceType("JOINED")]
 #[DiscriminatorColumn(name: "discr", type: "string")]
-#[DiscriminatorMap(["document" => Document::class, "book" => Book::class])]
+#[DiscriminatorMap(["document" => Document::class, "book" => Book::class, "film" => Film::class])]
 
 class Document
 {
