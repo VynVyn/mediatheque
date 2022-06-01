@@ -1,0 +1,8 @@
+<div class="card m-3">
+    <div class="card-body bg-light">
+        <h4 class="card-title">{{ document.cote }}</h5>
+        <class class="row">
+            {% include 'cards/_book.html.twig' with {book: document} only %}
+        </class>
+    </div>
+</div>

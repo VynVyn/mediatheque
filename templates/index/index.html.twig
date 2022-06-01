@@ -3,5 +3,8 @@
 {% block title %}Hello IndexController!{% endblock %}
 
 {% block body %}
-<h1 class="m-3">Bienvenue sur l'index de la médiathèque</h1>
+    <h1 class="m-3">Bienvenue sur l'index de la médiathèque</h1>
+    {% for document in documents %}
+        {% include 'cards/_card.html.twig' with {document: document} only %}
+    {% endfor %}
 {% endblock %}
