@@ -43,6 +43,7 @@ final class BookFactory extends ModelFactory
             'title' => self::faker()->words(5, true),
             'numberPage' => self::faker()->randomNumber(3),
             'langue' => LangueFactory::random(),
+            'categories' => CategorieFactory::randomRange(1,3),
         ];
     }
 

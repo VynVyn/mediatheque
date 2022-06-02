@@ -3,9 +3,10 @@
 namespace App\Factory;
 
 use App\Entity\Film;
+use App\Factory\LangueFactory;
 use App\Repository\FilmRepository;
-use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\Proxy;
 
 /**
@@ -44,6 +45,7 @@ final class FilmFactory extends ModelFactory
             'time' => self::faker()->datetime(), 
             'releaseDate' => self::faker()->dateTime('now -6month'),
             'langues' => LangueFactory::randomRange(2, 4),
+            'categories' => CategorieFactory::randomRange(1,3),
         ];
     }
 

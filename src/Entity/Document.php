@@ -31,9 +31,13 @@ class Document
     #[ORM\OneToMany(mappedBy: 'id_document', targetEntity: Information::class, orphanRemoval: true)]
     private $information;
 
+    #[ORM\ManyToMany(targetEntity: Categorie::class, mappedBy: 'document')]
+    private $categories;
+
     public function __construct()
     {
         $this->information = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -90,6 +94,33 @@ class Document
             if ($information->getIdDocument() === $this) {
                 $information->setIdDocument(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Categorie>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Categorie $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addDocument($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Categorie $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removeDocument($this);
         }
 
         return $this;
