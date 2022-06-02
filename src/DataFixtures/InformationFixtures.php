@@ -4,6 +4,8 @@ namespace App\DataFixtures;
 
 use App\Entity\Information;
 use App\Factory\ArtistFactory;
+use App\Factory\BookFactory;
+use App\Factory\CategorieArtistFactory;
 use App\Factory\FilmFactory;
 use App\Factory\InformationFactory;
 use Doctrine\Persistence\ObjectManager;
@@ -13,21 +15,24 @@ use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 class InformationFixtures extends Fixture implements FixtureGroupInterface
 
 {
+
     public function load(ObjectManager $manager): void
     {
-        $infoBook = InformationFactory::new()
-        ->artist()
-        ->categorieArtist()
-        ->book()
-        ->createMany(10)
-        ;
+        // $infoBook = InformationFactory::new()
+        // ->artist()
+        // ->categorieArtist()
+        // ->book()
+        // ->create()
+        // ;
 
-        $infofilm = InformationFactory::new()
-        ->artist()
-        ->categorieArtist()
-        ->film()
-        ->createMany(10)
-        ;
+        // $infofilm = InformationFactory::new()
+        // ->artist()
+        // ->categorieArtist()
+        // ->film()
+        // ->create()
+        // ;
+
+        InformationFactory::createMany(10);
 
     }
 
