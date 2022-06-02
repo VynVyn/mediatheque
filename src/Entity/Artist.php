@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ArtistRepository;
 
@@ -25,6 +27,14 @@ class Artist
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private DateTimeInterface $dateOfDeath;
+
+    #[ORM\OneToMany(mappedBy: 'id_artist', targetEntity: Information::class, orphanRemoval: true)]
+    private $information;
+
+    public function __construct()
+    {
+        $this->information = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +85,36 @@ class Artist
     public function setDateOfDeath(?\DateTimeInterface $dateOfDeath): self
     {
         $this->dateOfDeath = $dateOfDeath;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Information>
+     */
+    public function getInformation(): Collection
+    {
+        return $this->information;
+    }
+
+    public function addInformation(Information $information): self
+    {
+        if (!$this->information->contains($information)) {
+            $this->information[] = $information;
+            $information->setIdArtist($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInformation(Information $information): self
+    {
+        if ($this->information->removeElement($information)) {
+            // set the owning side to null (unless already changed)
+            if ($information->getIdArtist() === $this) {
+                $information->setIdArtist(null);
+            }
+        }
 
         return $this;
     }
