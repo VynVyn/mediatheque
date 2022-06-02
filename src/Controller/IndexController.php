@@ -28,4 +28,16 @@ class IndexController extends AbstractController
             'pager' => $pagerfanta,
         ]);
     }
+
+    #[Route('/document/{id}', name: 'show_document')]
+    public function showDocument($id, DocumentRepository $documents)
+    {
+        // $document = $documents->findBy(['id' => $id]);
+        $document = $documents->find($id);
+
+        return $this->render('document/document.html.twig', [
+            'document' => $document,
+        ]);
+    }
+
 }

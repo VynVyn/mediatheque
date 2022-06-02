@@ -5,7 +5,9 @@
 {% block body %}
     <h1 class="m-3">Bienvenue sur l'index de la médiathèque</h1>
     {% for document in pager %}
-        {% include 'cards/_card.html.twig' with {document: document} only %}
+        <a class="text-decoration-none" href="{{ path('show_document', {'id': document.id}) }}">
+            {% include 'cards/_card.html.twig' with {document: document} only %}
+        </a>
     {% endfor %}
     {{ pagerfanta(pager) }}
 {% endblock %}

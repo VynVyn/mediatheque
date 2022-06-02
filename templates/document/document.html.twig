@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{document.cote}}{% endblock %}
+
+{% block body %}
+
+
+	<section class="row d-flex justify-content-evenly my-5">
+        <div class="m-3 col-md-5">
+            <div class="">
+                <article class="mt-5">
+                    <p class="">cote : {{ document.cote }}</p>
+                    <div class="row text-center">
+                        {% include 'document/_'~(get_class(document)|lower)~'.html.twig' with {document: document} only %}
+                    </div>
+                </artcle>
+            </div>
+        </div>
+
+	</section>
+
+{% endblock %}
