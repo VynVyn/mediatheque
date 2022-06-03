@@ -1,0 +1,8 @@
+<div class="card m-3">
+    <div class="card-body bg-light">
+        <p class="card-text">cote : {{ document.cote }}</p>
+        <class class="row">
+            {% include 'document/reference/_'~(get_class(document)|lower)~'.html.twig' with {document: document} only %}
+        </class>
+    </div>
+</div>
