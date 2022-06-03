@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Categorie;
+use App\Entity\Document;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Pagerfanta\Pagerfanta;
 use App\Repository\BookRepository;
@@ -41,12 +42,11 @@ class IndexController extends AbstractController
         ]);
     }
 
-    #[Route('/documents/reference/{categories}', name: 'documents_categorie')]
-    public function showDocumentByCategorie(DocumentRepository $documents)
+    #[Route('/documents/reference/{id}', name: 'documents_categorie')]
+    public function showDocumentByCategorie(DocumentRepository $documents, Document $document)
     {
         // $document = $documents->findBy(['id' => $id]);
-        $documents = $documents->findAll();
-
+        $documents = $documents->getAllDocumentsByCategorie($document);
         return $this->render('document/reference/index.html.twig', [
             'documents' => $documents,
         ]);

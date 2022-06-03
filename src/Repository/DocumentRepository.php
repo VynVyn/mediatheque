@@ -46,15 +46,24 @@ class DocumentRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('d');
     }
     
-    public function getAllDocumentsByCategorie(Categorie $categorie): array
+    public function getAllDocumentsByCategorie(Document $doc): array
     {
-        return $this->createQueryBuilder('d')
-            ->andWhere('categories = :val')
-            ->setParameter('val',$categorie)
-            ->getQuery()
-            ->getResult()
+        $query = $this->createQueryBuilder('d')
+        ->select('c.name')
+        ->innerJoin('d.categories', 'c')
+        ->andWhere('d.id = :doc')
+        ->getDQL();
+                
+        $query_2 = $this->createQueryBuilder('d2')
+        ->select('DISTINCT d2')
+        ->innerJoin('d2.categories', 'c2')
+        ->andWhere("c2.name IN($query)")
+        ->setParameter('doc', $doc->getId())
+        ->getQuery()
+        ->getResult()
         ;
 
+        return $query_2;
     }
 
 }
