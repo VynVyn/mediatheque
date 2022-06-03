@@ -41,14 +41,14 @@ class IndexController extends AbstractController
         ]);
     }
 
-    #[Route('/documents/reference/{categorie}', name: 'documents_categorie')]
-    public function showDocumentByCategorie(Categorie $categorie, DocumentRepository $documents)
+    #[Route('/documents/reference/{categories}', name: 'documents_categorie')]
+    public function showDocumentByCategorie(DocumentRepository $documents)
     {
         // $document = $documents->findBy(['id' => $id]);
-        $documents = $documents->getAllDocumentsByCategorie($categorie);
+        $documents = $documents->findAll();
 
         return $this->render('document/reference/index.html.twig', [
-            'document' => $documents,
+            'documents' => $documents,
         ]);
     }
 

@@ -1,6 +1,6 @@
 <div class="card m-3">
     <div class="card-body bg-light">
-        <p class="card-text">cote : {{ document.cote }}</p>
+        <p class="card-text">cote : {{ document.cote }} {{ get_class(document)|lower }}</p>
         <class class="row">
             {% include 'cards/_'~(get_class(document)|lower)~'.html.twig' with {document: document} only %}
         </class>
