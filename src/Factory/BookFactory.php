@@ -3,7 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Book;
-use App\Factory\LangueFactory;
+// use App\Factory\LangueFactory;
 use App\Repository\BookRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;

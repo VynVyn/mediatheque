@@ -3,10 +3,10 @@
 namespace App\Factory;
 
 use App\Entity\Film;
-use App\Factory\LangueFactory;
+// use App\Factory\LangueFactory;
 use App\Repository\FilmRepository;
-use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 
 /**
@@ -33,7 +33,6 @@ final class FilmFactory extends ModelFactory
     {
         parent::__construct();
 
-        // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
     }
 
     protected function getDefaults(): array

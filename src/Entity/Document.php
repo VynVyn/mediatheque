@@ -102,7 +102,7 @@ class Document
     /**
      * @return Collection<int, Categorie>
      */
-    public function getCategories(): Collection
+    public function getCategories(): ?Collection
     {
         return $this->categories;
     }
