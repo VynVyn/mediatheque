@@ -3,7 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Book;
-use App\Factory\LangueFactory;
+// use App\Factory\LangueFactory;
 use App\Repository\BookRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
@@ -43,6 +43,7 @@ final class BookFactory extends ModelFactory
             'title' => self::faker()->words(5, true),
             'numberPage' => self::faker()->randomNumber(3),
             'langue' => LangueFactory::random(),
+            'categories' => CategorieFactory::randomRange(1,3),
         ];
     }
 

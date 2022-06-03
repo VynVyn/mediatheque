@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Film;
+// use App\Factory\LangueFactory;
 use App\Repository\FilmRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
@@ -32,7 +33,6 @@ final class FilmFactory extends ModelFactory
     {
         parent::__construct();
 
-        // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
     }
 
     protected function getDefaults(): array
@@ -44,6 +44,7 @@ final class FilmFactory extends ModelFactory
             'time' => self::faker()->datetime(), 
             'releaseDate' => self::faker()->dateTime('now -6month'),
             'langues' => LangueFactory::randomRange(2, 4),
+            'categories' => CategorieFactory::randomRange(1,3),
         ];
     }
 

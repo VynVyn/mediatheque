@@ -28,6 +28,7 @@ class Film extends Document
     public function __construct()
     {
         $this->langues = new ArrayCollection();
+        parent::__construct();
     }
 
     public function getTitle(): ?string
