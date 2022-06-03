@@ -3,9 +3,11 @@
     <h4 class="">{{ document.title|upper }}</h4>
     <p class="fw-bold text-muted">pages : {{ document.numberPage}}<span class="text-dark text-uppercase"></span> </p>
     <div>
-    <pre>
-        {{ dump(document.categories) }}
-    </pre>
-        {# {{ render(controller('App\\Controller\\IndexController::showDocumentByCategorie')) }} #}
+        {# <a class="text-decoration-none" href="{{ path('documents_categorie', {'id': document.id}) }}"></a> #}
+
+        {# {{ render(path('documents_categorie', {'id': document.id})) }} #}
+        {# {{ render(controller('App\\Controller\\IndexController::showDocumentByCategorie', {document: document})) }} #}
+
+        {{ render_hinclude(controller('App\\Controller\\IndexController::showDocumentByCategorie'), {'default': 'Loading...'}, {attributes: {document: document}}) }}
     </div>
 </class>
