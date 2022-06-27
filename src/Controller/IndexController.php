@@ -9,6 +9,7 @@ use Pagerfanta\Pagerfanta;
 use App\Repository\BookRepository;
 use App\Repository\FilmRepository;
 use App\Repository\DocumentRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,6 +26,11 @@ class IndexController extends AbstractController
         $pagerfanta = new Pagerfanta(new QueryAdapter($querybuilder));
         $pagerfanta->setMaxPerPage(10);
         $pagerfanta->setCurrentPage($request->query->get('page', 1));
+
+        if($this->isGranted('ROLE_ADMIN'))
+        {
+            return $this->redirectToRoute('admin_index');
+        }
 
         return $this->render('index/index.html.twig', [
             'pager' => $pagerfanta,
