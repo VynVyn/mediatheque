@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\admin;
 
 use App\Entity\Book;
 use App\Form\BookType;
@@ -16,7 +16,7 @@ class BookController extends AbstractController
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(BookRepository $bookRepository): Response
     {
-        return $this->render('book/index.html.twig', [
+        return $this->render('admin/book/index.html.twig', [
             'books' => $bookRepository->findAll(),
         ]);
     }
@@ -34,21 +34,21 @@ class BookController extends AbstractController
             return $this->redirectToRoute('book_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('book/new.html.twig', [
+        return $this->renderForm('admin/book/new.html.twig', [
             'book' => $book,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'show', methods: ['GET'])]
     public function show(Book $book): Response
     {
-        return $this->render('book/show.html.twig', [
+        return $this->render('admin/book/show.html.twig', [
             'book' => $book,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Book $book, BookRepository $bookRepository): Response
     {
         $form = $this->createForm(BookType::class, $book);
@@ -60,13 +60,13 @@ class BookController extends AbstractController
             return $this->redirectToRoute('book_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('book/edit.html.twig', [
+        return $this->renderForm('admin/book/edit.html.twig', [
             'book' => $book,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Book $book, BookRepository $bookRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$book->getId(), $request->request->get('_token'))) {

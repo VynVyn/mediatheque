@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\admin;
 
 use App\Entity\Langue;
 use App\Form\LangueType;
@@ -16,7 +16,7 @@ class LangueController extends AbstractController
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(LangueRepository $langueRepository): Response
     {
-        return $this->render('langue/index.html.twig', [
+        return $this->render('admin/langue/index.html.twig', [
             'langues' => $langueRepository->findAll(),
         ]);
     }
@@ -31,24 +31,24 @@ class LangueController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $langueRepository->add($langue, true);
 
-            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('langue_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('langue/new.html.twig', [
+        return $this->renderForm('admin/langue/new.html.twig', [
             'langue' => $langue,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'show', methods: ['GET'])]
     public function show(Langue $langue): Response
     {
-        return $this->render('langue/show.html.twig', [
+        return $this->render('admin/langue/show.html.twig', [
             'langue' => $langue,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Langue $langue, LangueRepository $langueRepository): Response
     {
         $form = $this->createForm(LangueType::class, $langue);
@@ -57,22 +57,22 @@ class LangueController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $langueRepository->add($langue, true);
 
-            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('langue_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('langue/edit.html.twig', [
+        return $this->renderForm('admin/langue/edit.html.twig', [
             'langue' => $langue,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Langue $langue, LangueRepository $langueRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$langue->getId(), $request->request->get('_token'))) {
             $langueRepository->remove($langue, true);
         }
 
-        return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('langue_index', [], Response::HTTP_SEE_OTHER);
     }
 }

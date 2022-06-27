@@ -23,10 +23,12 @@
                 <th>Birthday</th>
                 <td>{{ artist.birthday ? artist.birthday|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+            
             <tr>
                 <th>DateOfDeath</th>
                 <td>{{ artist.dateOfDeath ? artist.dateOfDeath|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+
         </tbody>
     </table>
 
@@ -34,5 +36,5 @@
 
     <a href="{{ path('artist_edit', {'id': artist.id}) }}">edit</a>
 
-    {{ include('artist/_delete_form.html.twig') }}
+    {{ include('admin/artist/_delete_form.html.twig') }}
 {% endblock %}

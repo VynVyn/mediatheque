@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\admin;
 
 use App\Entity\CategorieArtist;
 use App\Form\CategorieArtistType;
@@ -16,7 +16,7 @@ class CategorieArtistController extends AbstractController
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(CategorieArtistRepository $categorieArtistRepository): Response
     {
-        return $this->render('categorie_artist/index.html.twig', [
+        return $this->render('admin/categorie_artist/index.html.twig', [
             'categorie_artists' => $categorieArtistRepository->findAll(),
         ]);
     }
@@ -31,24 +31,24 @@ class CategorieArtistController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $categorieArtistRepository->add($categorieArtist, true);
 
-            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('categorie_artist_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('categorie_artist/new.html.twig', [
+        return $this->renderForm('admin/categorie_artist/new.html.twig', [
             'categorie_artist' => $categorieArtist,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'show', methods: ['GET'])]
     public function show(CategorieArtist $categorieArtist): Response
     {
-        return $this->render('categorie_artist/show.html.twig', [
+        return $this->render('admin/categorie_artist/show.html.twig', [
             'categorie_artist' => $categorieArtist,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, CategorieArtist $categorieArtist, CategorieArtistRepository $categorieArtistRepository): Response
     {
         $form = $this->createForm(CategorieArtistType::class, $categorieArtist);
@@ -57,22 +57,22 @@ class CategorieArtistController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $categorieArtistRepository->add($categorieArtist, true);
 
-            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('categorie_artist_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('categorie_artist/edit.html.twig', [
+        return $this->renderForm('admin/categorie_artist/edit.html.twig', [
             'categorie_artist' => $categorieArtist,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, CategorieArtist $categorieArtist, CategorieArtistRepository $categorieArtistRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$categorieArtist->getId(), $request->request->get('_token'))) {
             $categorieArtistRepository->remove($categorieArtist, true);
         }
 
-        return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('categorie_artist_index', [], Response::HTTP_SEE_OTHER);
     }
 }

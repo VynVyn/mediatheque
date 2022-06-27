@@ -26,7 +26,7 @@ class Artist
     private DateTimeInterface $birthday;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private DateTimeInterface $dateOfDeath;
+    private ?DateTimeInterface $dateOfDeath = null;
 
     #[ORM\OneToMany(mappedBy: 'id_artist', targetEntity: Information::class, orphanRemoval: true)]
     private $information;
