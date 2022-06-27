@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/admin/film', name: 'film_')]
 class FilmController extends AbstractController
@@ -21,6 +22,7 @@ class FilmController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_BIBLIOTECAIRE')]
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, FilmRepository $filmRepository): Response
     {
@@ -48,6 +50,7 @@ class FilmController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_BIBLIOTECAIRE')]
     #[Route('/edit/{id}', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Film $film, FilmRepository $filmRepository): Response
     {
