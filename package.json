@@ -16,7 +16,6 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "bootstrap-icons": "^1.8.3",
         "Hinclude": "^1.2.0"
     }
 }
