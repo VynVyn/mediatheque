@@ -20,6 +20,34 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
 
         $this->addReference('admin' , $admin->object());
 
+
+        $villagois = UserFactory::new()
+        ->admin('ROLE_VILLAGOIS')
+        ->withLogin('villagois@book.fr')
+        ->withPassword('password')
+        ->create()
+        ;
+
+        $this->addReference('villagois' , $villagois->object());
+
+        $bibliothecaire = UserFactory::new()
+        ->admin('ROLE_BIBLIOTECAIRE')
+        ->withLogin('bibliothecaire@book.fr')
+        ->withPassword('password')
+        ->create()
+        ;
+
+        $this->addReference('bibliothecaire' , $bibliothecaire->object());
+
+        $surveillant = UserFactory::new()
+        ->admin('ROLE_SURVEILLANT')
+        ->withLogin('surveillant@book.fr')
+        ->withPassword('password')
+        ->create()
+        ;
+
+        $this->addReference('surveillant' , $surveillant->object());
+
         UserFactory::createMany(2);
     }
 
