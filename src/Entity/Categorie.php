@@ -18,7 +18,7 @@ class Categorie
     #[ORM\Column(type: 'string', length: 255)]
     private string $name;
 
-    #[ORM\ManyToMany(targetEntity: Document::class, inversedBy: 'categories')]
+    #[ORM\ManyToMany(targetEntity: Document::class, mappedBy: 'categories')]
     private $document;
 
     public function __construct()
@@ -65,5 +65,10 @@ class Categorie
         $this->document->removeElement($document);
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

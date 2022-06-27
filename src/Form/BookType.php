@@ -16,8 +16,8 @@ class BookType extends AbstractType
             ->add('delicate')
             ->add('title')
             ->add('numberPage')
-            // ->add('categories')
-            // ->add('langue')
+            ->add('categories')
+            ->add('langue')
         ;
     }
 
