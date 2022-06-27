@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Document;
+use App\Entity\Categorie;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -43,6 +44,26 @@ class DocumentRepository extends ServiceEntityRepository
     public function getQueryBuilderForList(): QueryBuilder
     {
         return $this->createQueryBuilder('d');
+    }
+    
+    public function getAllDocumentsByCategorie(Document $doc): array
+    {
+        $query = $this->createQueryBuilder('d')
+        ->select('c.name')
+        ->innerJoin('d.categories', 'c')
+        ->andWhere('d.id = :doc')
+        ->getDQL();
+                
+        $query_2 = $this->createQueryBuilder('d2')
+        ->select('DISTINCT d2')
+        ->innerJoin('d2.categories', 'c2')
+        ->andWhere("c2.name IN($query)")
+        ->setParameter('doc', $doc->getId())
+        ->getQuery()
+        ->getResult()
+        ;
+
+        return $query_2;
     }
 
 }

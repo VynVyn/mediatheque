@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+    <h1 class="m-3">Adminnistrations des donnée de la mediathèque</h1>
+
+    <div class="d-flex justify-content-between m-4">
+
+        <div class="card bg-light col-6 col-mb-4" style="max-width: 18rem;">
+            <div class="card-header">
+                <a href="#" class="text-decoration-none d-flex justify-content-between"><span class="d-block">Book</span><span class="d-block">➕</span></a>
+            </div>
+            <div class="card-body">
+                <a href="#" class="btn btn-primary">Voir tous</a>
+            </div>
+        </div>
+
+        <div class="card bg-light col-6 col-mb-4" style="max-width: 18rem;">
+            <div class="card-header">
+                <a href="#" class="text-decoration-none d-flex justify-content-between"><span class="d-block">Film</span><span class="d-block">➕</span></a>
+            </div>
+            <div class="card-body">
+                <a href="#" class="btn btn-primary">Voir tous</a>
+            </div>
+        </div>
+
+         <div class="card bg-light col-6 col-mb-4" style="max-width: 18rem;">
+            <div class="card-header">
+                <a href="#" class="text-decoration-none d-flex justify-content-between"><span class="d-block">Artiste</span><span class="d-block">➕</span></a>
+            </div>
+            <div class="card-body">
+                <a href="#" class="btn btn-primary">Voir tous</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="d-flex justify-content-between m-4">
+
+            
+         <div class="card bg-light col-6 col-mb-4" style="max-width: 18rem;">
+            <div class="card-header">
+                <a href="#" class="text-decoration-none d-flex justify-content-between"><span class="d-block">Langue</span><span class="d-block">➕</span></a>
+            </div>
+            <div class="card-body">
+                <a href="#" class="btn btn-primary">Voir tous</a>
+            </div>
+        </div>
+
+         <div class="card bg-light col-6 col-mb-4" style="max-width: 18rem;">
+            <div class="card-header">
+                <a href="#" class="text-decoration-none d-flex justify-content-between"><span class="d-block">Categorie</span><span class="d-block">➕</span></a>
+            </div>
+            <div class="card-body">
+                <a href="#" class="btn btn-primary">Voir tous</a>
+            </div>
+        </div>
+
+         <div class="card bg-light col-6 col-mb-4" style="max-width: 18rem;">
+            <div class="card-header">
+                <a href="#" class="text-decoration-none d-flex justify-content-between"><span class="d-block">Categorie artiste</span><span class="d-block">➕</span></a>
+            </div>
+            <div class="card-body">
+                <a href="#" class="btn btn-primary">Voir tous</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between m-4">
+
+         <div class="card bg-light col-6 col-mb-4" style="max-width: 18rem;">
+            <div class="card-header">
+                <a href="#" class="text-decoration-none d-flex justify-content-between"><span class="d-block">User</span><span class="d-block">➕</span></a>
+            </div>
+            <div class="card-body">
+                <a href="#" class="btn btn-primary">Voir tous</a>
+            </div>
+        </div>
+
+    </div>
+{# 
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Categorie</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Ajouter une catégorie</a>
+        </div>
+    </div> #}
+
+        {# <a class="text-decoration-none" href="{{ path('show_document', {'id': document.id}) }}">
+            {% include 'cards/_card.html.twig' with {document: document} only %}
+        </a> #}
+{% endblock %}

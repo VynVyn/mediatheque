@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
+use App\Entity\Document;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Pagerfanta\Pagerfanta;
 use App\Repository\BookRepository;
 use App\Repository\FilmRepository;
 use App\Repository\DocumentRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,6 +27,11 @@ class IndexController extends AbstractController
         $pagerfanta->setMaxPerPage(10);
         $pagerfanta->setCurrentPage($request->query->get('page', 1));
 
+        if($this->isGranted('ROLE_ADMIN'))
+        {
+            return $this->redirectToRoute('admin_index');
+        }
+
         return $this->render('index/index.html.twig', [
             'pager' => $pagerfanta,
         ]);
@@ -37,6 +45,16 @@ class IndexController extends AbstractController
 
         return $this->render('document/document.html.twig', [
             'document' => $document,
+        ]);
+    }
+
+    #[Route('/documents/reference/{id}', name: 'documents_categorie')]
+    public function showDocumentByCategorie(DocumentRepository $documents, Document $document)
+    {
+        // $document = $documents->findBy(['id' => $id]);
+        $documents = $documents->getAllDocumentsByCategorie($document);
+        return $this->render('document/reference/index.html.twig', [
+            'documents' => $documents,
         ]);
     }
 

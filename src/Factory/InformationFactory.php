@@ -33,32 +33,32 @@ final class InformationFactory extends ModelFactory
         parent::__construct();
     }
 
-    public function artist(): self
-    {
-        return $this->addState(['id_artist' => ArtistFactory::random()]);
-    }
+    // public function artist(): self
+    // {
+    //     return $this->addState(['id_artist' => ArtistFactory::random()]);
+    // }
 
-    public function categorieArtist(): self
-    {
-        return $this->addState(['id_category_artist'=> CategorieArtistFactory::random()]);
-    }
+    // public function categorieArtist(): self
+    // {
+    //     return $this->addState(['id_category_artist'=> CategorieArtistFactory::random()]);
+    // }
 
-    public function book(): self
-    {
-        return $this->addState(['id_document'=> BookFactory::random()]);
-    }
+    // public function book(): self
+    // {
+    //     return $this->addState(['id_document'=> BookFactory::random()]);
+    // }
 
-    public function film(): self
-    {
-        return $this->addState(['id_document'=> FilmFactory::random()]);
-    }
+    // public function film(): self
+    // {
+    //     return $this->addState(['id_document'=> FilmFactory::random()]);
+    // }
 
     protected function getDefaults(): array
     {
         return [
             'id_artist' => ArtistFactory::random(),
             'id_category_artist' => CategorieArtistFactory::random(),
-            'id_document' => BookFactory::random(),
+            'id_document' => FilmFactory::random(),
         ];
     }
 
