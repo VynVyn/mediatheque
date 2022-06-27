@@ -2,30 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Book;
+use App\Entity\Artist;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BookType extends AbstractType
+class ArtistType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('cote')
-            ->add('delicate')
-            ->add('title')
-            ->add('numberPage')
-            ->add('categories'/*, ChoiceType::class*/)
-            ->add('langue')
+            ->add('firstName')
+            ->add('lasteName')
+            ->add('birthday')
+            ->add('dateOfDeath')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Book::class,
+            'data_class' => Artist::class,
         ]);
     }
 }

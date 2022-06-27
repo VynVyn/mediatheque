@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CategorieArtist{% endblock %}
+
+{% block body %}
+    <h1>Create new CategorieArtist</h1>
+
+    {{ include('categorie_artist/_form.html.twig') }}
+
+    <a href="{{ path('categorie_artist_index') }}">back to list</a>
+{% endblock %}

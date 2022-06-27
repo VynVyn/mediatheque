@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CategorieArtist index{% endblock %}
+
+{% block body %}
+    <h1>CategorieArtist index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie_artist in categorie_artists %}
+            <tr>
+                <td>{{ categorie_artist.id }}</td>
+                <td>{{ categorie_artist.name }}</td>
+                <td>
+                    <a href="{{ path('categorie_artist_show', {'id': categorie_artist.id}) }}">show</a>
+                    <a href="{{ path('categorie_artist_edit', {'id': categorie_artist.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('categorie_artist_new') }}">Create new</a>
+{% endblock %}
