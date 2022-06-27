@@ -31,7 +31,7 @@ class Document
     #[ORM\OneToMany(mappedBy: 'id_document', targetEntity: Information::class, orphanRemoval: true)]
     private $information;
 
-    #[ORM\ManyToMany(targetEntity: Categorie::class, mappedBy: 'document')]
+    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'document')]
     private $categories;
 
     public function __construct()
