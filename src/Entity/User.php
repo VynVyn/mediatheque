@@ -40,10 +40,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private DateTimeInterface $birthday;
 
     #[ORM\Column(type: 'float', nullable: true)]
-    private float $credit;
+    private ?float $credit = null;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private DateTimeInterface $validityDate;
+    private ?DateTimeInterface $validityDate = null;
 
     public function getId(): ?int
     {
