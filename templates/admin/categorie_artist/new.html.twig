@@ -3,9 +3,11 @@
 {% block title %}New CategorieArtist{% endblock %}
 
 {% block body %}
+<main class="wrap mt-50-mb-50">
     <h1>Create new CategorieArtist</h1>
 
     {{ include('admin/categorie_artist/_form.html.twig') }}
 
     <a href="{{ path('categorie_artist_index') }}">back to list</a>
+</main>
 {% endblock %}

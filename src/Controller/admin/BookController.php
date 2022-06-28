@@ -5,10 +5,11 @@ namespace App\Controller\admin;
 use App\Entity\Book;
 use App\Form\BookType;
 use App\Repository\BookRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/book', name: 'book_')]
 class BookController extends AbstractController
@@ -21,6 +22,8 @@ class BookController extends AbstractController
         ]);
     }
 
+
+    #[IsGranted('ROLE_BIBLIOTECAIRE')]
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, BookRepository $bookRepository): Response
     {
@@ -48,6 +51,7 @@ class BookController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_BIBLIOTECAIRE')]
     #[Route('/edit/{id}', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Book $book, BookRepository $bookRepository): Response
     {

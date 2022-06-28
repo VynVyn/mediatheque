@@ -36,12 +36,16 @@ class Document
 
     #[ORM\OneToMany(mappedBy: 'document', targetEntity: Loan::class, orphanRemoval: true)]
     private $loans;
+    
+    #[ORM\OneToMany(mappedBy: 'document', targetEntity: Commentaire::class)]
+    private $commentaires;
 
     public function __construct()
     {
         $this->information = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->loans = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -143,6 +147,18 @@ class Document
         if (!$this->loans->contains($loan)) {
             $this->loans[] = $loan;
             $loan->setDocument($this);
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setDocument($this);
         }
 
         return $this;
@@ -154,6 +170,12 @@ class Document
             // set the owning side to null (unless already changed)
             if ($loan->getDocument() === $this) {
                 $loan->setDocument(null);
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getDocument() === $this) {
+                $commentaire->setDocument(null);
             }
         }
 

@@ -3,6 +3,7 @@
 {% block title %}CategorieArtist{% endblock %}
 
 {% block body %}
+<main class="wrap mt-50-mb-50">
     <h1>CategorieArtist</h1>
 
     <table class="table">
@@ -23,4 +24,5 @@
     <a href="{{ path('categorie_artist_edit', {'id': categorie_artist.id}) }}">edit</a>
 
     {{ include('admin/categorie_artist/_delete_form.html.twig') }}
+</main>
 {% endblock %}
