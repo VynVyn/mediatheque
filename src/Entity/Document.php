@@ -34,10 +34,14 @@ class Document
     #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'document')]
     private $categories;
 
+    #[ORM\OneToMany(mappedBy: 'document', targetEntity: Commentaire::class)]
+    private $commentaires;
+
     public function __construct()
     {
         $this->information = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -121,6 +125,36 @@ class Document
     {
         if ($this->categories->removeElement($category)) {
             $category->removeDocument($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setDocument($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getDocument() === $this) {
+                $commentaire->setDocument(null);
+            }
         }
 
         return $this;
