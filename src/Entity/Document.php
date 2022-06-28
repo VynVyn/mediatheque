@@ -34,10 +34,14 @@ class Document
     #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'document')]
     private $categories;
 
+    #[ORM\OneToMany(mappedBy: 'document', targetEntity: Loan::class, orphanRemoval: true)]
+    private $loans;
+
     public function __construct()
     {
         $this->information = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->loans = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -121,6 +125,36 @@ class Document
     {
         if ($this->categories->removeElement($category)) {
             $category->removeDocument($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Loan>
+     */
+    public function getLoans(): Collection
+    {
+        return $this->loans;
+    }
+
+    public function addLoan(Loan $loan): self
+    {
+        if (!$this->loans->contains($loan)) {
+            $this->loans[] = $loan;
+            $loan->setDocument($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLoan(Loan $loan): self
+    {
+        if ($this->loans->removeElement($loan)) {
+            // set the owning side to null (unless already changed)
+            if ($loan->getDocument() === $this) {
+                $loan->setDocument(null);
+            }
         }
 
         return $this;
