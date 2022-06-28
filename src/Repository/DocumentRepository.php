@@ -66,4 +66,26 @@ class DocumentRepository extends ServiceEntityRepository
         return $query_2;
     }
 
+    public function getSimilarDocuments(Document $document): array
+    {
+        $query = $this->createQueryBuilder('d')
+        ->select('c.name')
+        ->innerJoin('d.categories', 'c')
+        ->andWhere('d.id = :document')
+        ->getDQL();
+                
+        $query_2 = $this->createQueryBuilder('d2')
+        ->select('DISTINCT d2')
+        ->innerJoin('d2.categories', 'c2')
+        ->andWhere("c2.name IN($query)")
+        ->andWhere("d2.id != :document")
+        ->setParameter('document', $document->getId())
+        ->setMaxResults(5)
+        ->getQuery()
+        ->getResult()
+        ;
+
+        return $query_2;
+    }
+
 }

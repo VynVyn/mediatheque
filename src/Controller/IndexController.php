@@ -52,7 +52,7 @@ class IndexController extends AbstractController
     public function showDocumentByCategorie(DocumentRepository $documents, Document $document)
     {
         // $document = $documents->findBy(['id' => $id]);
-        $documents = $documents->getAllDocumentsByCategorie($document);
+        $documents = $documents->getSimilarDocuments($document);
         return $this->render('document/reference/index.html.twig', [
             'documents' => $documents,
         ]);
