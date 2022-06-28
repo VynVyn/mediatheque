@@ -147,6 +147,10 @@ class Document
         if (!$this->loans->contains($loan)) {
             $this->loans[] = $loan;
             $loan->setDocument($this);
+        }
+    }
+
+    /**
      * @return Collection<int, Commentaire>
      */
     public function getCommentaires(): Collection
@@ -170,6 +174,10 @@ class Document
             // set the owning side to null (unless already changed)
             if ($loan->getDocument() === $this) {
                 $loan->setDocument(null);
+            }
+        }
+    }
+
     public function removeCommentaire(Commentaire $commentaire): self
     {
         if ($this->commentaires->removeElement($commentaire)) {
