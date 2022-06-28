@@ -7,7 +7,11 @@
 
         {# {{ render(path('documents_categorie', {'id': document.id})) }} #}
 
-        {{ render(controller('App\\Controller\\CommentaireController::new', {document: document, user: app.user})) }}
+        {{ render(controller('App\\Controller\\CommentaireController::new', {document: document})) }}
+        {# <pre>
+            {{ dump(document) }}
+        </pre> #}
+        
 
         {# {{ render(controller('App\\Controller\\IndexController::showDocumentByCategorie', {document: document})) }} #}
 
