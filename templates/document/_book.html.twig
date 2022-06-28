@@ -9,7 +9,7 @@
 
         {{ render(controller('App\\Controller\\CommentaireController::new', {document: document, user: app.user})) }}
 
-        {{ render(controller('App\\Controller\\IndexController::showDocumentByCategorie', {document: document})) }}
+        {# {{ render(controller('App\\Controller\\IndexController::showDocumentByCategorie', {document: document})) }} #}
 
         {# {{ render_hinclude(controller('App\\Controller\\IndexController::showDocumentByCategorie'), {'default': 'Loading...'}, {attributes: {document: document}}) }} #}
     </div>

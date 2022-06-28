@@ -6,6 +6,7 @@
 
 
 	<section class="d-flex justify-content-evenly my-5">
+
         <div class="m-3 col-md-5">
             <div class="">
                 <article class="mt-5">
@@ -14,6 +15,13 @@
                         {% include 'document/_'~(get_class(document)|lower)~'.html.twig' with {document: document} only %}
                     </div>
                 </artcle>
+            </div>
+        </div>
+
+        <div class="m-3 col-md-4">
+            <div class="row text-center">
+                <h3>Documents de la même catégorie :</h3>
+                {{ render(controller('App\\Controller\\IndexController::showDocumentByCategorie', {document: document})) }}
             </div>
         </div>
 
