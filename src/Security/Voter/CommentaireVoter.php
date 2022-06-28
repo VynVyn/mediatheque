@@ -46,8 +46,7 @@ class CommentaireVoter extends Voter
 
     protected function canNew($subject, User $user): bool
     {
-
-        if($user->getValidityDate >= new DateTime('now') && $this->loanRepository->getOneLoan($user,$subject))
+        if($user->getValidityDate() >= new DateTime('now') && $this->loanRepository->getOneLoan($user,$subject))
         {
             return true;
         }

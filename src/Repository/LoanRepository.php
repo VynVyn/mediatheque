@@ -41,7 +41,7 @@ class LoanRepository extends ServiceEntityRepository
         }
     }
 
-    public function getOneLoan(User $user, Document $document): ?Loan
+    public function getOneLoan(User $user, Document $document): array
     {
 
        return $this->createQueryBuilder('l')
