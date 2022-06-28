@@ -55,4 +55,9 @@ class Book extends Document
         return $this;
     }
 
+    public function __toString(): string
+    {
+        return $this->getId();
+    }
+
 }
