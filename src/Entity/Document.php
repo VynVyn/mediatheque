@@ -148,6 +148,8 @@ class Document
             $this->loans[] = $loan;
             $loan->setDocument($this);
         }
+
+        return $this;
     }
 
     /**
@@ -176,6 +178,8 @@ class Document
                 $loan->setDocument(null);
             }
         }
+
+        return $this;
     }
 
     public function removeCommentaire(Commentaire $commentaire): self

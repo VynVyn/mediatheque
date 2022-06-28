@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Loan;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
@@ -51,17 +50,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Loan::class)]
     private $loans;
 
-    public function __construct()
-    {
-        $this->loans = new ArrayCollection();
-    }
-
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commentaire::class)]
     private $commentaires;
 
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
+        $this->loans = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -220,6 +215,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->loans[] = $loan;
             $loan->setUser($this);
         }
+
+        return $this;
     }
 
     /**
@@ -248,6 +245,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $loan->setUser(null);
             }
         }
+
+        return $this;
     }
        
     public function removeCommentaire(Commentaire $commentaire): self
