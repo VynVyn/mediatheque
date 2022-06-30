@@ -8,11 +8,15 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class DocumentReadSubscriber implements EventSubscriberInterface
 {
+    public function __construct(private string $path, private string $stateFiles)
+    {
+        
+    }
     public function onDocumentRead($event): void
     {
         $doc = $event->getTarget();
-        if(file_exists(__DIR__.'/../../counter.json')){
-                $counter = file_get_contents(__DIR__.'/../../counter.json');
+        if(file_exists("{$this->path}/{$this->stateFiles}")){
+                $counter = file_get_contents("{$this->path}/{$this->stateFiles}");
                 $tableau = json_decode($counter, true);
         }else{
             $tableau = [];
@@ -28,7 +32,7 @@ class DocumentReadSubscriber implements EventSubscriberInterface
         }
 
         $newTableau = json_encode($tableau);
-        file_put_contents(__DIR__.'/../../counter.json', $newTableau);
+        file_put_contents("{$this->path}/{$this->stateFiles}", $newTableau);
     }
 
     public static function getSubscribedEvents(): array

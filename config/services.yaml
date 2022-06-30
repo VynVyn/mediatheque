@@ -12,6 +12,10 @@ services:
         autoconfigure: true
         bind:
             $maintenance: false
+            $path: '%kernel.project_dir%'
+
+          # Toute les classe de symfony sont des service => referencement containner de service => injection de dependance dans les autre classe par le construct
+
 
          # Automatically registers your services as commands, event subscribers, etc.
 
@@ -24,5 +28,28 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+
+    App\EventSubscriber\DocumentReadSubscriber:
+        arguments: 
+            $stateFiles: 'counter.json'
+
+    # App\Repository\CommentaireRepository:
+    #     arguments:
+    #         $registry: '@ManagerRegistry'
+    # # @ => un service
+    # App\Service\Tarification\Individuel:
+    #     tags:
+    #         - { name: 'app.tarification', key: 'tarification individuel' }
+
+    # App\Service\Tarification\Two:
+    #     tags:
+    #         - { name: 'app.tarification', key: 'tarification_two' }
+
+    App\Service\Tarification\Entreprise :
+        tags:
+            - { name: 'app.tarification', key: 'tarification_entreprise' }
+
+    App\Service\Tarification\Tarification:
+        arguments: 
+            - !tagged_iterator { tag: app.tarification, default_priority_method: getPriority, index_by: 'key' }
+        

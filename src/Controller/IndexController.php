@@ -9,6 +9,7 @@ use App\Repository\BookRepository;
 use App\Repository\FilmRepository;
 use App\Repository\DocumentRepository;
 use App\Event\CounterReadDocumentEvent;
+use App\Service\Tarification\Tarification;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,6 +69,28 @@ class IndexController extends AbstractController
         $documents = $documents->getSimilarDocuments($document);
         return $this->render('document/reference/index.html.twig', [
             'documents' => $documents,
+        ]);
+    }
+
+    #[Route('/adhesion', name: 'adhesion')]
+    #[IsGranted('ROLE_USER')]
+    public function adhesion(Tarification $tarification)
+    {
+        $user = $this->getUser();
+        if(isset($_POST["go"]))
+        {
+            //on recupèr le choix de l'utilisateur
+            $choix = $_POST["abo"];
+            // on recupère l'espace de nom du la bonne tarification choisie via le tableau des tarifications qui sont définit dans le service.yaml
+            $espaceDeNom = $tarification->getTarifications()[$choix];
+            // on calcule de pris de l'adonnement    
+            $prix = $espaceDeNom->compute($user);
+            // puis faire la logique de l'enregistrement <div class=""></div>
+            echo $prix;
+        }
+        
+        return $this->render('tarification/form.html.twig', [
+            'options' => $tarification->getTarifications(),
         ]);
     }
 

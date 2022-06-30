@@ -1,0 +1,19 @@
+
+<form action="{{ path('adhesion')}}" method="POST">
+
+<label for="abo">choisissez votre abonnement !</label>
+
+    {% if options is not empty %}
+
+        <select name="abo" id="abo">
+
+        {% for key , option in options %}
+            <option value="{{key}}">{{key}}</option>
+        {% endfor %}
+
+        </select>
+
+
+    {% endif %}
+    <input name="go" type="submit" value="S'abonner"/>
+</form>

@@ -267,4 +267,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->id;
     }
+
+    public function getNbEntreprise()
+    {
+        return random_int(0,2000);
+    }
+
 }
+
